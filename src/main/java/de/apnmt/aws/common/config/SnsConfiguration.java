@@ -17,7 +17,7 @@ import org.springframework.messaging.converter.MessageConverter;
 @Configuration
 public class SnsConfiguration {
 
-    @Value("${cloud.aws.sqs.endpoint}")
+    @Value("${cloud.aws.sns.endpoint}")
     private String endpoint;
 
     @Value("${cloud.aws.region.static}")
