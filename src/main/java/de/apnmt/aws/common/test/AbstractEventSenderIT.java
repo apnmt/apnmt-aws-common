@@ -1,7 +1,5 @@
 package de.apnmt.aws.common.test;
 
-import java.io.IOException;
-
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +12,8 @@ import org.testcontainers.containers.localstack.LocalStackContainer.Service;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+
+import java.io.IOException;
 
 @DirtiesContext
 @Testcontainers
@@ -28,6 +28,8 @@ public abstract class AbstractEventSenderIT {
 
     @DynamicPropertySource
     static void overrideConfiguration(DynamicPropertyRegistry registry) {
+        registry.add("cloud.aws.sqs.enabled", () -> true);
+        registry.add("cloud.aws.sns.enabled", () -> true);
         registry.add("cloud.aws.sqs.endpoint", () -> localStack.getEndpointOverride(Service.SQS));
         registry.add("cloud.aws.sns.endpoint", () -> localStack.getEndpointOverride(Service.SNS));
         registry.add("cloud.aws.credentials.access-key", localStack::getAccessKey);
