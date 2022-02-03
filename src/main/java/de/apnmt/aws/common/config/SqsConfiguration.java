@@ -1,7 +1,5 @@
 package de.apnmt.aws.common.config;
 
-import java.util.List;
-
 import com.amazonaws.auth.AWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
@@ -14,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.messaging.converter.MessageConverter;
+
+import java.util.List;
 
 @Configuration
 public class SqsConfiguration {

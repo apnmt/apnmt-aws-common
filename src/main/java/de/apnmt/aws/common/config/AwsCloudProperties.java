@@ -7,11 +7,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <p>
  * Properties are configured in the {@code application.yml} file.
  */
-@ConfigurationProperties(prefix = "cloud.aws", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "cloud.aws")
 public class AwsCloudProperties {
 
     private final AwsCloudProperties.Credentials credentials = new AwsCloudProperties.Credentials();
     private final AwsCloudProperties.Logging logging = new AwsCloudProperties.Logging();
+    private final AwsCloudProperties.Tracing tracing = new AwsCloudProperties.Tracing();
 
     public Credentials getCredentials() {
         return credentials;
@@ -19,6 +20,10 @@ public class AwsCloudProperties {
 
     public Logging getLogging() {
         return logging;
+    }
+
+    public Tracing getTracing() {
+        return tracing;
     }
 
     public static class Credentials {
@@ -85,6 +90,32 @@ public class AwsCloudProperties {
 
             public void setQueueSize(int queueSize) {
                 this.queueSize = queueSize;
+            }
+        }
+    }
+
+    public static class Tracing {
+        private final AwsCloudProperties.Tracing.XRay xRay = new AwsCloudProperties.Tracing.XRay();
+
+        public Tracing() {
+        }
+
+        public AwsCloudProperties.Tracing.XRay getXRay() {
+            return this.xRay;
+        }
+
+        public static class XRay {
+            private boolean enabled = false;
+
+            public XRay() {
+            }
+
+            public boolean isEnabled() {
+                return this.enabled;
+            }
+
+            public void setEnabled(boolean enabled) {
+                this.enabled = enabled;
             }
         }
     }
