@@ -38,7 +38,7 @@ public class TracingUtil {
     public static String createTraceId(boolean enabled) {
         if (enabled) {
             Segment segment = AWSXRay.getCurrentSegment();
-            return "Root=" + segment.getTraceId() + ";Parent=" + segment.getParentId() + ";Sampled=1";
+            return "Root=" + segment.getTraceId() + ";Parent=" + segment.getId() + ";Sampled=1";
         }
         return "";
     }
