@@ -113,5 +113,9 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-xray-recorder-sdk-sql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-cloudwatch2</artifactId>
+        </dependency>
     </dependencies>
 </project>
