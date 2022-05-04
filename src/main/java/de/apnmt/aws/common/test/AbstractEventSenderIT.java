@@ -37,7 +37,7 @@ public abstract class AbstractEventSenderIT {
     }
 
     @BeforeEach
-    void beforeAll() throws IOException, InterruptedException {
+    void beforeEach() throws IOException, InterruptedException {
         localStack.execInContainer("awslocal", "sns", "create-topic", "--name", getTopic());
         localStack.execInContainer("awslocal", "sqs", "create-queue", "--queue-name", getQueue());
         localStack.execInContainer("awslocal", "sns", "subscribe", "--topic-arn", "arn:aws:sns:us-east-1:000000000000:" + getTopic(), "--protocol", "sqs", "--notification" +
